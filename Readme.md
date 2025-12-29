@@ -57,6 +57,8 @@ https://raw.githubusercontent.com/Ramz1337/hover-portrait/main/module.json
 1. Download the ZIP from:  
    https://github.com/Ramz1337/hover-portrait/archive/refs/heads/main.zip  
 2. Extract it into your Foundry `Data/modules` folder.
-3. Restart Foundry and enable the module.
+3. Make sure the directory is called hover-portrait
+4. Restart Foundry and enable the module.
+
 
 
