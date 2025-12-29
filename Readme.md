@@ -54,11 +54,12 @@ https://raw.githubusercontent.com/Ramz1337/hover-portrait/main/module.json
 
 ### **Method 2: Install from GitHub**
 
-1. Download the ZIP from:  
-   https://github.com/Ramz1337/hover-portrait/archive/refs/heads/main.zip  
-2. Extract it into your Foundry `Data/modules` folder.
-3. Make sure the directory is called hover-portrait
-4. Restart Foundry and enable the module.
+1. Download the ZIP from:
+2. [hover-portrait.zip](https://github.com/user-attachments/files/24367132/hover-portrait.zip)
+3. Extract it into your Foundry `Data/modules` folder.
+4. Make sure the directory is called hover-portrait
+5. Restart Foundry and enable the module.
+
 
 
 
