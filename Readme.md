@@ -33,9 +33,6 @@ This module is system‑agnostic and works with **any game system**.
 ### 🔄 Token Inheritance
 - Newly created tokens automatically inherit the actor’s saved portrait.
 
-### 📌 Pinning Support
-- Portrait window can be pinned in place (per-user setting).
-
 ### 🧩 Zero Interference
 - No UI collisions.
 - No resizing logic (removed for stability).
@@ -59,6 +56,7 @@ https://raw.githubusercontent.com/Ramz1337/hover-portrait/main/module.json
 3. Extract it into your Foundry `Data/modules` folder.
 4. Make sure the directory is called hover-portrait
 5. Restart Foundry and enable the module.
+
 
 
 
