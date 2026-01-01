@@ -1,4 +1,4 @@
-console.log("Hover Portrait: hover.js v2.2 — Static Bottom-Left Edition loaded");
+console.log("Hover Portrait: hover.js v2.3 — Static Bottom-Left Edition loaded");
 
 let hoverWrapper = null;
 let hoverElement = null;
@@ -27,18 +27,35 @@ function startAutoFadeTimer() {
   if (autoFadeTimeout) clearTimeout(autoFadeTimeout);
 
   autoFadeTimeout = setTimeout(() => {
-    fadeOut();
+    hideHoverPortrait();
   }, 7000);
 }
 
 function fadeIn() {
   if (!hoverElement) return;
-  hoverElement.style.opacity = "0.85";
+
+  hoverWrapper.style.display = "block";
+
+  requestAnimationFrame(() => {
+    hoverWrapper.classList.remove("hidden");
+    hoverElement.classList.remove("hidden");
+    hoverElement.style.opacity = "0.85";
+  });
 }
 
 function fadeOut() {
   if (!hoverElement) return;
+
+  hoverWrapper.classList.add("hidden");
+  hoverElement.classList.add("hidden");
   hoverElement.style.opacity = "0";
+
+  // Fully remove hitbox after fade
+  setTimeout(() => {
+    if (hoverWrapper.classList.contains("hidden")) {
+      hoverWrapper.style.display = "none";
+    }
+  }, 300); // match CSS transition
 }
 
 // ---------------------------------------------------------
