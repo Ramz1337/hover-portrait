@@ -1,4 +1,4 @@
-/* Hover Portrait CSS v2.2 — Static Bottom-Left Edition */
+/* Hover Portrait CSS v2.3 — Static Bottom-Left Edition */
 /* ---------------------------------------------------------
    BASE ELEMENT STYLES
 --------------------------------------------------------- */
@@ -121,4 +121,18 @@
     0 0 14px rgba(255,120,0,0.7) !important,
     inset 0 0 12px rgba(255,80,0,0.4) !important;
   background: rgba(30,10,0,0.5) !important;
+}
+
+/* ---------------------------------------------------------
+   FIX: Prevent Invisible Overlay Blocking UI
+--------------------------------------------------------- */
+
+#hover-portrait.hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+#hover-wrapper.hidden {
+  pointer-events: none !important;
+  opacity: 0 !important;
 }
