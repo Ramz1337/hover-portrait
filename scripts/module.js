@@ -1,8 +1,8 @@
 // ------------------------------------------------------------
-// Hover Portrait — module.js v2.3.1 (Final Corrected Version)
+// Hover Portrait — module.js v2.3.2 (Dialog Picker, No UI Changes)
 // ------------------------------------------------------------
 
-console.log("Hover Portrait: module.js v2.3.1 loaded");
+console.log("Hover Portrait: module.js v2.3.2 loaded");
 
 // ------------------------------------------------------------
 // Register module settings
@@ -69,14 +69,16 @@ Hooks.on("preCreateToken", (document) => {
 });
 
 // ------------------------------------------------------------
-// Custom sandboxed portrait picker with auto folder categories
+// ORIGINAL DIALOG PICKER (kept exactly the same)
+// Only change: FilePicker → FilePicker.implementation
 // ------------------------------------------------------------
 async function openHoverPortraitPicker(token) {
   const baseDir = "modules/hover-portrait/assets/portraits";
+  const FP = foundry.applications.apps.FilePicker.implementation;
 
   let rootBrowse;
   try {
-    rootBrowse = await FilePicker.browse("data", clampToPortraits(baseDir));
+    rootBrowse = await FP.browse("data", clampToPortraits(baseDir));
   } catch (err) {
     console.error("Hover Portrait: Failed to browse root directory", err);
     ui.notifications.error("Hover Portrait: Could not read portraits directory.");
@@ -122,7 +124,7 @@ async function openHoverPortraitPicker(token) {
 
         let browse;
         try {
-          browse = await FilePicker.browse("data", clampToPortraits(path), {
+          browse = await FP.browse("data", clampToPortraits(path), {
             extensions: [".png", ".jpg", ".jpeg", ".webp", ".gif", ".webm", ".mp4", ".ogg", ".m4v"]
           });
         } catch (err) {
@@ -201,6 +203,7 @@ Hooks.on("renderTokenHUD", (hud, html, tokenData) => {
 
   $(target).append(btn);
 
+  // Use the original Dialog picker
   btn.on("click", async () => {
     openHoverPortraitPicker(token);
   });
