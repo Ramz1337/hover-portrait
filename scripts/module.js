@@ -1,8 +1,8 @@
 // ------------------------------------------------------------
-// Hover Portrait — module.js (final corrected version)
+// Hover Portrait — module.js v2.3.1 (Final Corrected Version)
 // ------------------------------------------------------------
 
-console.log("Hover Portrait: module.js loaded");
+console.log("Hover Portrait: module.js v2.3.1 loaded");
 
 // ------------------------------------------------------------
 // Register module settings
@@ -76,10 +76,7 @@ async function openHoverPortraitPicker(token) {
 
   let rootBrowse;
   try {
-    rootBrowse = await foundry.applications.apps.FilePicker.implementation.browse(
-      "data",
-      clampToPortraits(baseDir)
-    );
+    rootBrowse = await FilePicker.browse("data", clampToPortraits(baseDir));
   } catch (err) {
     console.error("Hover Portrait: Failed to browse root directory", err);
     ui.notifications.error("Hover Portrait: Could not read portraits directory.");
@@ -125,13 +122,9 @@ async function openHoverPortraitPicker(token) {
 
         let browse;
         try {
-          browse = await foundry.applications.apps.FilePicker.implementation.browse(
-            "data",
-            clampToPortraits(path),
-            {
-              extensions: [".png", ".jpg", ".jpeg", ".webp", ".gif", ".webm", ".mp4", ".ogg", ".m4v"]
-            }
-          );
+          browse = await FilePicker.browse("data", clampToPortraits(path), {
+            extensions: [".png", ".jpg", ".jpeg", ".webp", ".gif", ".webm", ".mp4", ".ogg", ".m4v"]
+          });
         } catch (err) {
           console.error("Hover Portrait: Failed to browse folder", err);
           return;

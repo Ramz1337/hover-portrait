@@ -1,4 +1,7 @@
-console.log("Hover Portrait: hover.js v2.3 — Static Bottom-Left Edition loaded");
+// Hover Portrait v2.3.2 — Static Bottom-Left Edition
+// Final Stability Patch: Prevents off-screen jumps under rapid hover events.
+
+console.log("Hover Portrait: hover.js v2.3.2 — Static Bottom-Left Edition loaded");
 
 let hoverWrapper = null;
 let hoverElement = null;
@@ -50,12 +53,11 @@ function fadeOut() {
   hoverElement.classList.add("hidden");
   hoverElement.style.opacity = "0";
 
-  // Fully remove hitbox after fade
   setTimeout(() => {
     if (hoverWrapper.classList.contains("hidden")) {
       hoverWrapper.style.display = "none";
     }
-  }, 300); // match CSS transition
+  }, 300);
 }
 
 // ---------------------------------------------------------
@@ -97,6 +99,30 @@ function applyDynamicClamp(media) {
 }
 
 // ---------------------------------------------------------
+// Bottom-left positioning (final fixed version)
+// ---------------------------------------------------------
+function positionBottomLeft(wrapper) {
+  // Ensure wrapper is visible before measuring
+  wrapper.style.display = "block";
+  wrapper.classList.remove("hidden");
+
+  requestAnimationFrame(() => {
+    const w = wrapper.offsetWidth;
+    const h = wrapper.offsetHeight;
+
+    const bottomLeft = clampToScreen(
+      MARGIN,
+      window.innerHeight - h - MARGIN,
+      w,
+      h
+    );
+
+    wrapper.style.left = bottomLeft.x + "px";
+    wrapper.style.top = bottomLeft.y + "px";
+  });
+}
+
+// ---------------------------------------------------------
 // Main display logic
 // ---------------------------------------------------------
 async function showHoverPortrait(token) {
@@ -132,6 +158,7 @@ async function showHoverPortrait(token) {
 
     media.onloadeddata = () => {
       applyDynamicClamp(media);
+      positionBottomLeft(wrapper);
       fadeIn();
       startAutoFadeTimer();
     };
@@ -141,6 +168,7 @@ async function showHoverPortrait(token) {
 
     media.onload = () => {
       applyDynamicClamp(media);
+      positionBottomLeft(wrapper);
       fadeIn();
       startAutoFadeTimer();
     };
@@ -148,19 +176,6 @@ async function showHoverPortrait(token) {
 
   media.style.pointerEvents = "none";
   hoverElement.appendChild(media);
-
-  // Always bottom-left
-  requestAnimationFrame(() => {
-    const h = wrapper.offsetHeight;
-    const bottomLeft = clampToScreen(
-      MARGIN,
-      window.innerHeight - h - MARGIN,
-      wrapper.offsetWidth,
-      wrapper.offsetHeight
-    );
-    wrapper.style.left = bottomLeft.x + "px";
-    wrapper.style.top = bottomLeft.y + "px";
-  });
 }
 
 // ---------------------------------------------------------
