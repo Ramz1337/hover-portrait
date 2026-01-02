@@ -2,7 +2,7 @@
   "id": "hover-portrait",
   "title": "Hover Portrait",
   "description": "Displays a custom portrait when hovering over tokens, with a sandboxed portrait picker and premium UI.",
-  "version": "2.3.0",
+  "version": "2.3.1",
 
   "compatibility": {
     "minimum": "12",
@@ -31,5 +31,5 @@
 
   "url": "https://github.com/Ramz1337/hover-portrait",
   "manifest": "https://raw.githubusercontent.com/Ramz1337/hover-portrait/main/module.json",
-  "download": "https://github.com/Ramz1337/hover-portrait/archive/refs/tags/v2.3.0.zip"
+  "download": "https://github.com/Ramz1337/hover-portrait/archive/refs/tags/v2.3.1.zip"
 }
